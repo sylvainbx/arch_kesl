@@ -1,7 +1,7 @@
 # Maintainer: TF <mail | at | sedi [DOT] one>
 pkgname=('kesl' 'kesl-gui')
-pkgver=11.2.0.4528
-_pkgver_gui=11.2.1.4528
+pkgver=12.1.0.1297
+_pkgver_gui=12.1.0.1297
 _pkgverbuild=$(echo ${pkgver} | cut -d "." -f 4)
 _pkgver=$(echo ${pkgver} | cut -d "." -f 1-3)
 pkgrel=3
@@ -19,13 +19,13 @@ conflicts=( 'eea'
 install=${pkgname}.install
 changelog=${pkgname}.changelog
 # https://www.kaspersky.com/small-to-medium-business-security/downloads/endpoint?ignoreredirects=true
-source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${pkgver}/3437313131347c44454c7c31/kesl_${_pkgver}-${_pkgverbuild}_amd64.deb"
-         "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${_pkgver_gui}/3437373638347c44454c7c4e554c4c/kesl-gui_${_pkgver}-${_pkgverbuild}_amd64.deb"
+source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${pkgver}/3837323739397c44454c7c31/kesl_${_pkgver}-${_pkgverbuild}_amd64.deb"
+         "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${_pkgver_gui}/3837323739397c44454c7c31/kesl-gui_${_pkgver}-${_pkgverbuild}_amd64.deb"
          "${pkgname}.install"
          "kesl.ini"
          "kesl.start.conf")
-sha256sums=('44aef3025d9c440a87effa684169057d4a50d31dca9cc1e2e1d91a2cd42f6160'
-            'dc2c5c82cac25ba6ebf02220deb5c40fd2035bd24e74a62fb6d0bf3933e7db31'
+sha256sums=('ee96a6082803159c03c884f4280e515bfd33152d8252204f0ee56619ebf37326'
+            'e37e3a352be83514d17706f4af1b289bb4ceb95f731d520a96e52699e609df4e'
             '926d6136a8c455b5aab649f3be547ca1a82a4920e8467f209c91ae6ee797d08f'
             '86203f1dcd663763bc9c8d51a98e510523189c7e78a7fb293183095b89bfa6cf'
             '29efcd166bb0fc5baa5a85dc0f41c6c2e253f6b8fd3ee723862496364281cb4c')
