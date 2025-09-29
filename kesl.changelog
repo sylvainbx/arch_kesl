@@ -1,6 +1,6 @@
-﻿Kaspersky Endpoint Security 12.1 for Linux (12.1.0.1508) RELEASE NOTES
+﻿Kaspersky Endpoint Security 12.3 for Linux (12.3.0.1162) RELEASE NOTES
 ==============================================================================
-Version release date: October 09, 2024
+Version release date: September 08, 2025
 
 Contents:
 	* What's new
@@ -12,19 +12,43 @@ Contents:
 
 What's new
 --------------------------------------------------------------------------------
-Kaspersky Endpoint Security 12.1 for Linux (hereinafter also referred to as Kaspersky Endpoint Security) has the following new features and improvements:
-	* Now you can set up integration with Kaspersky Endpoint Detection and Response Optimum, which protects the organization’s IT infrastructure from threats such as exploits, ransomware, fileless attacks and attackers' use of legitimate system tools to harm devices or data.
-	* Now you can add two active license key to the application: the main key for activating the application and an additional key for activating the Kaspersky Endpoint Detection and Response Optimum functionality. The additional key is required if your main license does not include the Kaspersky Endpoint Detection and Response Optimum functionality.
-	* Added a new Web Control component, which controls user access to web resources. This allows you to reduce traffic consumption and reduce inappropriate use of working time. If a user tries to open a website to which access is restricted by Web Control, Kaspersky Endpoint Security blocks access or displays a warning.
-	* The newly added Kaspersky Endpoint Security stability monitoring functionality allows you to track the number of times the application terminates abnormally and notify the administrator about the unstable operation of the application.
-	* The procedure for installing Kaspersky Endpoint Security using the Kaspersky Security Center Web Console has been improved: in the properties of the application installation package, you can now specify initial configuration parameters that were previously available only in the autoinstall.ini configuration file.
-	* More application settings can be specified using the Kaspersky Security Center Web Console and the Kaspersky Security Center Administration Console: you can edit settings that previously could be set only on the command line.
-	* Now you can enable or disable global exclusions and File Threat Protection exclusions when running scan tasks.
-	* Now you can set up integration with Kaspersky Symphony XDR: if the Kaspersky Endpoint Security application is being used in standard mode, the application can perform the "Start Malware Scan" and "Database update" response actions. If Kaspersky Endpoint Security is being used in Light Agent mode, integration with Kaspersky Symphony XDR is not supported.
-	* Now you can send information about all devices installed in client devices or connected to them (including those installed and connected previously but currently disconnected) to the Administration Server when the application is managed using Kaspersky Security Center.
-	* Traffic interception rules have been improved to support the interaction of containers on the same network.
-	* Updated the list of supported operating systems.
+Kaspersky Endpoint Security now boasts the following features and improvements:
 
+    * A mechanism for intercepting system events based on the updatable kernel module has been implemented (not available in Light Agent mode). If the operating system of the device supports fanotify and satisfies other requirements for installing the updatable kernel module, you can configure the application to use the updatable kernel module. Using an updatable kernel module allows optimizing the interception of started processes by Kaspersky Endpoint Security. The updatable kernel module is included in the distribution kit of the application.
+    * The updatable kernel module improves the functionality of the Anti-Cryptor component (not available in Light Agent mode). The application can now detect more types of ransomware.
+    * We added a new functional component: Exploit protection (not available in Light Agent mode ). Exploit Prevention monitors code that exploits
+    vulnerabilities on your device to gain administrative privileges or perform malicious actions.
+    * The Device Control component has been improved:
+        We added the ability to configure a list of users or user groups for which the added devices are considered trusted.
+        We added the ability to allow read-only access to storage devices.
+        User notification through events has also been improved: newly added events, clearer and more consistent event texts in plug-ins and on the command line.
+    * Expanded integration with the Kaspersky Managed Detection and Response solution:
+        Now you can isolate the device from the network.
+        You can quarantine files or restore files from quarantine.
+        You can start or terminate a process.
+    * Added the ability to activate the MDR component, which provides integration with Kaspersky Managed Detection and Response, by adding a license key.
+    * The Behavior Detection component has been improved. Now you can enable or disable the exclusion of a process from scanning by MDR and EDR (KATA).
+    * Now you can configure proxy server exclusions. You can specify which Kaspersky Endpoint Security components must bypass the proxy server, and also create a list of addresses that the proxy server will not be used for. If Kaspersky Endpoint Security is used in Light Agent mode to protect virtual environments, the use of a proxy server for connecting to Kaspersky Security Network, the SVM, and the Integration Server is not supported.
+    * Now you can configure traffic interception exclusions. Now you can use the management plug-ins of the application or the command line to specify connections that the application must exclude from traffic interception.
+    * Now you can temporarily exclude database log files from scanning to optimize the File Threat Protection scan. If a database log file is reused by the same process within 10 minutes of the last scan, the application skips the scan of that log file.
+    * Now you can enable the merging of exclusion list items in a parent policy and its child policy when inheriting the settings of the parent policy.
+    * Now you can use the management web plug-in to export and import lists of exclusions in policies and tasks.
+    * We added the ability to configure the initial configuration settings of the Kaspersky Endpoint Security application in the Administration Console of Kaspersky Security Center when creating an installation package or in the properties of an installation package.
+    * Now you can configure the cancellation of scheduled tasks on a device running on battery power.
+    * We added the ability to enable or disable the use of the KSN proxy server when Kaspersky Endpoint Security interacts with KSN servers (not available in Light Agent mode). If the use of the KSN proxy server is enabled, Kaspersky Endpoint Security communicates with KSN servers using the KSN Proxy service on the Administration Server. If the use of the KSN proxy server is disabled, Kaspersky Endpoint Security interacts with the KSN servers directly.
+    * On the command line, you can use a command that displays a list of application functions, information about their status (used or not used), and the Linux technologies that these application features are implemented with.
+    * We added the ability to display information about the policy and policy profiles in effect on the device on the command line and in the graphical interface.
+    * Now you can use the command line to install the application on a device that does not have the Perl interpreter installed.
+    * Improved traffic interception. Now local traffic (traffic between processes on the same device) is not intercepted.
+    * Now you can pass the necessary settings for sending telemetry when integrated with Kaspersky Managed Detection and Response without having to use the KPSN configuration file. If you are using the Kaspersky Security Network infrastructure solution or if your only tenant is the root tenant, you do not need a KPSN configuration file for integration with Kaspersky Managed Detection and Response.
+    * Optimized the storage of a large number of events in the application event log. Interaction with the event database has been sped up when opening or closing it, as well as when getting events.
+    * The graphical interface of the application has been improved (if the application is used in Light Agent mode, the graphical interface is not supported):
+        Now you can enable or disable the Web Control component.
+        Reworked the style of the graphical interface (new colors, rounded corners of all windows).
+    * Changed the names of actions that can be applied to infected objects in the File Threat Protection settings and scan tasks.
+    * Added an alternative mechanism for getting system telemetry in the Behavior Detection component on 64-bit operating systems (with kernel versions 5.3 or later with eBPF support), which allows freeing up the resources of the audit.d kernel audit subsystem. The application uses eBPF automatically if the operating system satisfies the requirements, also in the Light Agent mode.
+    * Dates and times in all application management interfaces (except the command line interface) are displayed in a uniform format conforming to RFC 3339, for example, 2023-12-25 23:55:59.
+    * The list of supported operating systems has been updated. 
 
 System requirements
 --------------------------------------------------------------------------------
@@ -47,29 +71,33 @@ Supported operating systems:
 		* Mageia™ 4
 		* ALT 8 SP Workstation (8.4)
 		* ALT 8 SP Server (8.4)
-		* ALT SP Workstation 10
-		* ALT SP Server 10
-	Supported 64-bit operating systems:
+        Supported 64-bit operating systems:
 		* AlmaLinux OS 8 and later
 		* AlmaLinux OS 9 and later
 		* AlterOS® 7.5 and later
-		* Amazon™ Linux 2
+		* Amazon™ Linux 2023
 		* Astra Linux Common Edition 2.12
 		* Astra Linux Special Edition RUSB.10015-01 (operational update 1.5)
 		* Astra Linux Special Edition RUSB.10015-01 (operational update 1.6)
 		* Astra Linux Special Edition RUSB.10015-01 (operational update 1.7)
+                * Astra Linux Special Edition RUSB.10015-01 (operational update 1.8)
+                * Astra Linux Special Edition RUSB.10015-03 (operational update 7.6)
 		* Astra Linux Special Edition RUSB.10015-16 (release 1) (operational update 1.6)
+		* Astra Linux Special Edition RUSB.10015-17 (operational update 1.7.3)
+  		* Astra Linux Special Edition RUSB.10015-37 (operational update 7.7)
 		The Astra Linux operating system in the "Mobile" mode is only supported on tablet computers (tablets) in desktop mode.
 		* CentOS 7.2 and later
 		* CentOS Stream 8
 		* CentOS Stream 9
+		* CentOS Stream 10
 		* Debian GNU / Linux 11.0 and later
 		* Debian GNU / Linux 12.0 and later
 		* EMIAS 1.0
 		* EulerOS 2.0 SP10
+		* Fedora Linux 41
 		* Kylin 10
-		* LinuxMint 20.3 and later
-		* LinuxMint 21.1 and later
+		* LinuxMint 21.0 and later
+		* LinuxMint 22.0 and later
 		* openSUSE Leap 15.0 and later
 		* Oracle Linux 7.3 and later
 		* Oracle Linux 8.0 and later
@@ -77,13 +105,13 @@ Supported operating systems:
 		* Red Hat Enterprise Linux 7.2 and later
 		* Red Hat Enterprise Linux 8.0 and later
 		* Red Hat Enterprise Linux 9.0 and later
+                * Red Hat Enterprise Linux 10.0 and later
 		* Rocky Linux 8.5 and later
 		* Rocky Linux 9.1
-		* SberLinux 8.8 (Dykhtau)
-		* SberOS 3.2.0
+		* SberLinux 8.10.1
+		* SberOS 3.4.0
 		* SUSE Linux Enterprise Server 12.5 and later
 		* SUSE Linux Enterprise Server 15 and later
-		* Ubuntu® 20.04 LTS
 		* Ubuntu 22.04 LTS
 		* Ubuntu 24.04 LTS
 		* ALT 8 SP Workstation (8.4)

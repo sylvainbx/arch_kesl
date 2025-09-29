@@ -1,12 +1,12 @@
 # Maintainer: copycat <simakr2512 | at | yandex [DOT] ru>
 pkgname=('kesl')
-pkgver=12.1.0.1508
+pkgver=12.3.0.1162
 _pkgverbuild=$(echo ${pkgver} | cut -d "." -f 4)
 _pkgver=$(echo ${pkgver} | cut -d "." -f 1-3)
 pkgrel=1
 arch=('x86_64')
-pkgdesc='Kaspersky Endpoint Security 12.1.0 for Linux'
-url='https://support.kaspersky.com/help/KES4Linux/12.1.0/en-US/264264.htm'
+pkgdesc='Kaspersky Endpoint Security 12.3.0 for Linux'
+url='https://support.kaspersky.com/help/KES4Linux/12.3.0/en-US/264264.htm'
 license=('custom')
 noextract=("kesl_${_pkgver}-${_pkgverbuild}_amd64.deb")
 depends=('perl')
@@ -20,12 +20,12 @@ changelog=${pkgname}.changelog
 
 #https://www.kaspersky.com/small-to-medium-business-security/downloads/endpoint?utm_content=downloads
 #They always change that "3837323739337c44454c7c31" thing so there is no point of generating download link based on pkg version
-source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.1.0.1508/multilanguage-12.1.0.1508/3931313439317c44454c7c31/kesl_12.1.0-1508_amd64.deb"
+source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.3.0.1162/multilanguage-12.3.0.1162/3939393231377c44454c7c31/kesl_12.3.0-1162_amd64.deb"
          "${pkgname}.install"
          "kesl.ini"
          "kesl.start.conf")
-sha256sums=('801fb6db64774a980a645d516abccd374c994999195abd0a716a035d5ee4d39b'
-            '94515968102ea87e7720bfdadb7a5fb58afadd7922d54aec6d8ae7b292940c65'
+sha256sums=('D673482ADE77C7965FBD2D066E5EDFA5B4EE4779966033C9F5B538C0FD8D74C5'
+            'b30c734af4d4a5cdf5d40e2c7f0e4bcc5f59210c84656f159027f1f486011eb0'
             '72899f7a8d5c63e1541762603cf6fc1a05a9114c60a529e7b18bac2b334040f1'
             '29efcd166bb0fc5baa5a85dc0f41c6c2e253f6b8fd3ee723862496364281cb4c')
 validpgpkeys=('6AFE173577C4CBD621DF217FD093435AA3ED2C4A')
