@@ -1,3 +1,5 @@
+GUI has been split into different PKGBUILD here: https://github.com/SimakR/arch_kesl-gui
+
 # About
 
 Arch package for Kaspersky Endpoint Security for Linux (KESL)
@@ -78,5 +80,5 @@ Then edit the `persistent` file to your needs and on next upgrade, install, re-i
 
 Of course you can modify these `/ect/kesl/<setting>.conf` or better `/ect/kesl/<setting>.conf.persistent` files and then use them to configure kesl independent from the above described package process. For that you just need to pick the right `kesl-control` task and feed it with that configuration file of your choice.
 
-You can read more about the options etc here: https://support.kaspersky.com/KES4Linux/11/en-US/161263.htm
+You can read more about the options etc here: https://support.kaspersky.com/KES4Linux/12.0.0/en-US/245017.htm
 
