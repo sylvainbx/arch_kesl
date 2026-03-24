@@ -1,7 +1,7 @@
 TMPDIR=/tmp
 KESLDIR=/etc/kesl
 
-# checkout https://support.kaspersky.com/KES4Linux/11/en-US/161263.htm for all
+# checkout https://support.kaspersky.com/KES4Linux/12/en-US/161263.htm for all
 # possible options. Another way is to export all settings like that:
 # kesl-control --export-settings > all.conf
 # then review key=value within.
@@ -31,29 +31,6 @@ create_tmp(){
 remove_tmp(){
     KTMP="$1"
     [ -d "$KTMP" ] && rm -rf "$KTMP"
-}
-
-# man pages are special here:
-# 1) usr/local/share is protected (owned by filesystem package)
-# 2) when modding /opt/kaspersky/kesl/libexec/symlinks/man directly the hash will break and kesl won't work properly
-# 3) to be flexible for future changes we backup the symlink defs to tmp, replace, run installer, revert original
-# this ensures that the kesl install dir isn't tampered and future changes will be added automagically or by
-# extending the following func:
-man_pre(){
-    # man pages
-    cp /var/opt/kaspersky/kesl/install_12.3.0.1162/opt/kaspersky/kesl/libexec/symlinks/man $KTMP/
-    sed -i 's#usr/local/#usr/#g' /var/opt/kaspersky/kesl/install_12.3.0.1162/opt/kaspersky/kesl/libexec/symlinks/man
-
-    for sl in $(cat /var/opt/kaspersky/kesl/install_12.3.0.1162/opt/kaspersky/kesl/libexec/symlinks/man);do
-        sld=$(dirname $sl)
-        [ ! -d $sld ] && mkdir -p $sld
-    done
-}
-
-man_post(){
-    # revert man pages symlinks
-    cp $KTMP/man /var/opt/kaspersky/kesl/install_12.3.0.1162/opt/kaspersky/kesl/libexec/symlinks/man
-    [ -d "/opt/kaspersky/kesl/libexec/symlinks" ] && cp $KTMP/man /opt/kaspersky/kesl/libexec/symlinks/man
 }
 
 # backup current kesl config
@@ -129,13 +106,9 @@ post_install(){
         export ${key}=$v ${kkey}=$v
     done
     KTMP=$(create_tmp)
-    #kesl_symlinks
-    man_pre
-
+    
     # exec the debian package postinst
     /var/opt/kaspersky/kesl/pkgscripts/postinst configure
-
-    man_post
 
     # execute the kesl installer with preconfigured settings
     echo -e "\e[32m\e[1m ... starting '/opt/kaspersky/kesl/bin/kesl-setup.pl' now\e[0m\n(no need to execute it again after installation has finished)."
